@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Node from "./Node/Node";
-import "./PathfindingVisualizer.css";
+import "./pathfindingVisualizer.css";
 import { dijkstra, getShortestPathNodesInOrder } from "../algorithm/dijkstra";
+import Navbar from "../navbar/Navbar";
 
-let START_NODE_ROW = 11;
-let START_NODE_COL = 15;
-let FINISH_NODE_ROW = 11;
-let FINISH_NODE_COL = 55;
+let START_NODE_ROW = 12;
+let START_NODE_COL = 14;
+let FINISH_NODE_ROW = 12;
+let FINISH_NODE_COL = 35;
 
 export default function PathfindingVisualizer() {
   const [node, setNode] = useState([]);
@@ -18,9 +19,9 @@ export default function PathfindingVisualizer() {
   useEffect(() => {
     const createInitialGrid = () => {
       const node = [];
-      for (let row = 0; row < 23; row++) {
+      for (let row = 0; row < 25; row++) {
         const currentRow = [];
-        for (let col = 0; col < 70; col++) {
+        for (let col = 0; col < 50; col++) {
           currentRow.push(createNode(row, col));
         }
         node.push(currentRow);
@@ -43,73 +44,71 @@ export default function PathfindingVisualizer() {
     };
   };
 
-  const createWalls = (row,col) =>{
+  const createWalls = (row, col) => {
     const newNode = node.slice();
-    newNode[row][col].isWall = true;
+    const newGrid = newNode[row][col];
+    newNode[row][col].isWall = !newGrid.isWall;
     setNode(newNode);
-  }
+  };
 
-  const moveStartNode = (row,col) => {
+  const moveStartNode = (row, col) => {
     const newNode = node.slice();
     const grid = newNode[row][col];
     newNode[row][col].isStart = !grid.isStart;
     START_NODE_ROW = row;
     START_NODE_COL = col;
     setNode(newNode);
-  }
+  };
 
-  const moveFinishNode = (row,col) => {
+  const moveFinishNode = (row, col) => {
     const newNode = node.slice();
     const grid = newNode[row][col];
     newNode[row][col].isFinish = !grid.isFinish;
     FINISH_NODE_ROW = row;
     FINISH_NODE_COL = col;
     setNode(newNode);
-  }
+  };
 
-  const handleMouseDown = (isStart,row,col,isFinish) => {
-    if(isStart){
-      moveStartNode(row,col);
+  const handleMouseDown = (isStart, row, col, isFinish) => {
+    if (isStart) {
+      moveStartNode(row, col);
       setMoveStart(true);
     }
-    if(isFinish){
-      moveFinishNode(row,col);
+    if (isFinish) {
+      moveFinishNode(row, col);
       setMoveFinish(true);
     }
-    if(startCreateWalls){
-      createWalls(row,col);
+    if (startCreateWalls && !isStart && !isFinish) {
+      createWalls(row, col);
       setMouseIsPressed(true);
     }
-  }
+  };
 
-  const handleMouseEnter = (row,col) => {
-    if(!startCreateWalls){
-      return;
-    }
-    if(!mouseIsPressed) return;
-    createWalls(row,col);
-  }
+  const handleMouseEnter = (row, col) => {
+    if (!startCreateWalls || !mouseIsPressed || moveStart || moveFinish) return;
+    createWalls(row, col);
+  };
 
-  const handleMouseUp = (row,col) => {
-    if(startCreateWalls){
+  const handleMouseUp = (row, col) => {
+    if (startCreateWalls) {
       setMouseIsPressed(false);
     }
-    if(moveStart){
-      moveStartNode(row,col);
+    if (moveStart) {
+      moveStartNode(row, col);
       setMoveStart(false);
     }
-    if(moveFinish){
-      moveFinishNode(row,col);
+    if (moveFinish) {
+      moveFinishNode(row, col);
       setMoveFinish(false);
     }
-  }
+  };
 
-  const animateDijkstra = (visitedNodesInOrder,nodesInShortestPath) => {
-    for (let i = 1; i < visitedNodesInOrder.length; i++) {
-      if(i === visitedNodesInOrder.length-2){
-        setTimeout(()=>{
+  const animateDijkstra = (visitedNodesInOrder, nodesInShortestPath) => {
+    for (let i = 0; i < visitedNodesInOrder.length; i++) {
+      if (i === visitedNodesInOrder.length - 2) {
+        setTimeout(() => {
           animateShortestPath(nodesInShortestPath);
-        }, 10 * i );
+        }, 10 * i);
         return;
       }
       setTimeout(() => {
@@ -121,7 +120,7 @@ export default function PathfindingVisualizer() {
   };
 
   const animateShortestPath = (nodesInShortestPath) => {
-    for(let i = 0; i < nodesInShortestPath.length-1; i++){
+    for (let i = 0; i < nodesInShortestPath.length ; i++) {
       setTimeout(() => {
         const node = nodesInShortestPath[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
@@ -135,7 +134,7 @@ export default function PathfindingVisualizer() {
     const finishNode = node[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(node, startNode, finishNode);
     const nodesInShortestPath = getShortestPathNodesInOrder(finishNode);
-    animateDijkstra(visitedNodesInOrder,nodesInShortestPath);
+    animateDijkstra(visitedNodesInOrder, nodesInShortestPath);
     if (finishNode.previousNode === null)
       alert("Could not find the shortest path.");
   };
@@ -143,12 +142,7 @@ export default function PathfindingVisualizer() {
   return (
     <>
       <div className="pathfinding-visualiser">
-        <button onClick={visualizeDijkstra}>
-          Visualise Dijkstra's algorithm
-        </button>
-        <button onClick={()=>{setStartCreateWalls(true)}}>
-          Create Walls
-        </button>
+        <Navbar visualizeDijkstra = {visualizeDijkstra} setStartCreateWalls = {setStartCreateWalls}></Navbar>
       </div>
       <table className="grid">
         <tbody>
@@ -156,7 +150,7 @@ export default function PathfindingVisualizer() {
             return (
               <tr className="rows" key={rowIdx}>
                 {row.map((currentNode, currentNodeIdx) => {
-                  const { row, col, isStart, isFinish, isVisited, isWall} =
+                  const { row, col, isStart, isFinish, isVisited, isWall } =
                     currentNode;
                   return (
                     <Node
@@ -166,10 +160,16 @@ export default function PathfindingVisualizer() {
                       isStart={isStart}
                       isFinish={isFinish}
                       isVisited={isVisited}
-                      isWall = {isWall}
-                      onMouseDown={(isStart,row,col,isFinish)=>{handleMouseDown(isStart,row,col,isFinish)}}
-                      onMouseEnter={(row,col)=>{handleMouseEnter(row,col)}}
-                      onMouseUp={(row,col)=>{handleMouseUp(row,col)}}
+                      isWall={isWall}
+                      onMouseDown={(isStart, row, col, isFinish) => {
+                        handleMouseDown(isStart, row, col, isFinish);
+                      }}
+                      onMouseEnter={(row, col) => {
+                        handleMouseEnter(row, col);
+                      }}
+                      onMouseUp={(row, col) => {
+                        handleMouseUp(row, col);
+                      }}
                     ></Node>
                   );
                 })}

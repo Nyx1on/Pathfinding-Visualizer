@@ -1,15 +1,43 @@
 .node {
-  width: 25px;
-  height: 25px;
-  outline: 2px solid rgb(175, 216, 248);
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(175, 216, 248);
+  background-color: white;
 }
 
 .node-finish {
-  background-color: red;
+  background-image: url(../../styling/14274017891654131770.svg);
+  background-position: center;
+  background-size: cover;
 }
 
 .node-start {
-  background-color: green;
+  background-image: url(../../styling/go-start-svgrepo-com.svg);
+  background-position: center;
+  background-size: contain;
+}
+
+
+.node-wall {
+  animation-name: nodewall;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  background-color: rgb(27, 27, 27);
+  outline: 0px;
+}
+
+@keyframes nodewall{
+  0%{
+    transform: scale(1.5);
+    background-color: rgb(173, 173, 173);
+  }
+  50%{
+    transform: scale(1);
+    background-color: rgb(99, 99, 99);
+  }
+  100%{
+    background-color: rgb(27, 27, 27);
+  }
 }
 
 .node-visited {
@@ -37,9 +65,6 @@
   }
 }
 
-.node-wall {
-  background-color: rgb(22, 22, 22);
-}
 
 .node-shortestpath {
   animation-name: shortestpath;

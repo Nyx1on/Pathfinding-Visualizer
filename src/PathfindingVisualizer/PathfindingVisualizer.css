@@ -1,8 +1,10 @@
-.pathfinding-visualiser{
-  background-color: rgb(22, 22, 22);
-}
+*{
+  box-sizing: border-box;
+}  
 
-.grid {
-  margin: 100px auto 100px auto;
+.grid{
+  border-spacing: 2px;
+  border-collapse: collapse;
+  margin: 10px auto auto auto;
 }
 

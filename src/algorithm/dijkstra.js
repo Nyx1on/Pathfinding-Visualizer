@@ -18,9 +18,6 @@ export function dijkstra(grid, startNode, finishNode) {
     if (currentNode === finishNode) return visitedNodesInOrder;
     relaxationOfUnvisitedNodes(currentNode, grid);
   }
-
-  if (finishNode.previousNode === null)
-    console.log("Could not find the shortest path.");
 }
 
 const relaxationOfUnvisitedNodes = (currentNode, grid) => {
