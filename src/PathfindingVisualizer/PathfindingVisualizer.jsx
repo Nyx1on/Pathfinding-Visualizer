@@ -3,14 +3,17 @@ import Node from "./Node/Node";
 import "./PathfindingVisualizer.css";
 import { dijkstra, getShortestPathNodesInOrder } from "../algorithm/dijkstra";
 
-const START_NODE_ROW = 11;
-const START_NODE_COL = 15;
-const FINISH_NODE_ROW = 11;
-const FINISH_NODE_COL = 55;
+let START_NODE_ROW = 11;
+let START_NODE_COL = 15;
+let FINISH_NODE_ROW = 11;
+let FINISH_NODE_COL = 55;
 
 export default function PathfindingVisualizer() {
   const [node, setNode] = useState([]);
   const [mouseIsPressed, setMouseIsPressed] = useState(false);
+  const [startCreateWalls, setStartCreateWalls] = useState(false);
+  const [moveStart, setMoveStart] = useState(false);
+  const [moveFinish, setMoveFinish] = useState(false);
 
   useEffect(() => {
     const createInitialGrid = () => {
@@ -42,25 +45,63 @@ export default function PathfindingVisualizer() {
 
   const createWalls = (row,col) =>{
     const newNode = node.slice();
-    const grid = newNode[row][col];
-    newNode[row][col].isWall = !grid.isWall;
-    return newNode;
+    newNode[row][col].isWall = true;
+    setNode(newNode);
   }
 
-  const handleMouseDown = (row,col) => {
-    const newNode = createWalls(row,col);
+  const moveStartNode = (row,col) => {
+    const newNode = node.slice();
+    const grid = newNode[row][col];
+    newNode[row][col].isStart = !grid.isStart;
+    START_NODE_ROW = row;
+    START_NODE_COL = col;
     setNode(newNode);
-    setMouseIsPressed(true);
+  }
+
+  const moveFinishNode = (row,col) => {
+    const newNode = node.slice();
+    const grid = newNode[row][col];
+    newNode[row][col].isFinish = !grid.isFinish;
+    FINISH_NODE_ROW = row;
+    FINISH_NODE_COL = col;
+    setNode(newNode);
+  }
+
+  const handleMouseDown = (isStart,row,col,isFinish) => {
+    if(isStart){
+      moveStartNode(row,col);
+      setMoveStart(true);
+    }
+    if(isFinish){
+      moveFinishNode(row,col);
+      setMoveFinish(true);
+    }
+    if(startCreateWalls){
+      createWalls(row,col);
+      setMouseIsPressed(true);
+    }
   }
 
   const handleMouseEnter = (row,col) => {
+    if(!startCreateWalls){
+      return;
+    }
     if(!mouseIsPressed) return;
-    const newNode = createWalls(row,col);
-    setNode(newNode);
+    createWalls(row,col);
   }
 
-  const handleMouseUp = () => {
-    setMouseIsPressed(false);
+  const handleMouseUp = (row,col) => {
+    if(startCreateWalls){
+      setMouseIsPressed(false);
+    }
+    if(moveStart){
+      moveStartNode(row,col);
+      setMoveStart(false);
+    }
+    if(moveFinish){
+      moveFinishNode(row,col);
+      setMoveFinish(false);
+    }
   }
 
   const animateDijkstra = (visitedNodesInOrder,nodesInShortestPath) => {
@@ -105,6 +146,9 @@ export default function PathfindingVisualizer() {
         <button onClick={visualizeDijkstra}>
           Visualise Dijkstra's algorithm
         </button>
+        <button onClick={()=>{setStartCreateWalls(true)}}>
+          Create Walls
+        </button>
       </div>
       <table className="grid">
         <tbody>
@@ -112,7 +156,7 @@ export default function PathfindingVisualizer() {
             return (
               <tr className="rows" key={rowIdx}>
                 {row.map((currentNode, currentNodeIdx) => {
-                  const { row, col, isStart, isFinish, isVisited, isWall, mouseIsPressed} =
+                  const { row, col, isStart, isFinish, isVisited, isWall} =
                     currentNode;
                   return (
                     <Node
@@ -123,8 +167,7 @@ export default function PathfindingVisualizer() {
                       isFinish={isFinish}
                       isVisited={isVisited}
                       isWall = {isWall}
-                      mouseIsPressed={mouseIsPressed}
-                      onMouseDown={(row,col)=>{handleMouseDown(row,col)}}
+                      onMouseDown={(isStart,row,col,isFinish)=>{handleMouseDown(isStart,row,col,isFinish)}}
                       onMouseEnter={(row,col)=>{handleMouseEnter(row,col)}}
                       onMouseUp={(row,col)=>{handleMouseUp(row,col)}}
                     ></Node>

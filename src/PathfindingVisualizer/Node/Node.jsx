@@ -28,9 +28,9 @@ export default function Node(props) {
     <td
       id={`node-${row}-${col}`}
       className={`node ${nodeName}`}
-      onMouseDown={() => onMouseDown(row, col)}
+      onMouseDown={() => onMouseDown(isStart,row, col,isFinish)}
       onMouseEnter={() => onMouseEnter(row, col)}
-      onMouseUp={() => onMouseUp()}
+      onMouseUp={() => onMouseUp(row,col)}
     ></td>
   );
 }
