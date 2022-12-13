@@ -1,66 +1,74 @@
-// Performs Dijkstra's algorithm; returns *all* nodes in the order
-// in which they were visited. Also makes nodes point back to their
-// previous node, effectively allowing us to compute the shortest path
-// by backtracking from the finish node.
-export function dijkstra(grid, startNode, finishNode){
-    const visitedNodesInOrder = [];
-    startNode.distance = 0;
-    const unvisitedNodes = getAllNodes(grid);
-    while (!!unvisitedNodes.length) {
-      sortNodesByDistance(unvisitedNodes);
-      const closestNode = unvisitedNodes.shift();
-      // If we encounter a wall, we skip it.
-      if (closestNode.isWall) continue;
-      // If the closest node is at a distance of infinity,
-      // we must be trapped and should therefore stop.
-      if (closestNode.distance === Infinity) return visitedNodesInOrder;
-      closestNode.isVisited = true;
-      visitedNodesInOrder.push(closestNode);
-      if (closestNode === finishNode) return visitedNodesInOrder;
-      updateUnvisitedNeighbors(closestNode, grid);
+export function dijkstra(grid, startNode, finishNode) {
+  const visitedNodesInOrder = [];
+  startNode.distance = 0;
+  const unvisitedNodes = getAllNodes(grid);
+
+  while (unvisitedNodes.length !== 0) {
+    sortNodesByDistance(unvisitedNodes);
+
+    const currentNode = unvisitedNodes.shift();
+
+    if (currentNode.isWall) continue;
+
+    if (currentNode.distance === Infinity) return visitedNodesInOrder;
+
+    currentNode.isVisited = true;
+    visitedNodesInOrder.push(currentNode);
+
+    if (currentNode === finishNode) return visitedNodesInOrder;
+    relaxationOfUnvisitedNodes(currentNode, grid);
+  }
+
+  if (finishNode.previousNode === null)
+    console.log("Could not find the shortest path.");
+}
+
+const relaxationOfUnvisitedNodes = (currentNode, grid) => {
+  const unvisitedNeighborNodes = getNeighborNodes(currentNode, grid);
+  for (let i = 0; i < unvisitedNeighborNodes.length; i++) {
+    unvisitedNeighborNodes[i].distance = currentNode.distance + 1;
+    unvisitedNeighborNodes[i].previousNode = currentNode;
+  }
+};
+
+const getNeighborNodes = (currentNode, grid) => {
+  const { row, col } = currentNode;
+  const neighborNodes = [];
+  if (row > 0 && row < grid.length - 1) {
+    neighborNodes.push(grid[row - 1][col]);
+    neighborNodes.push(grid[row + 1][col]);
+  }
+  if (col > 0 && col < grid[0].length - 1) {
+    neighborNodes.push(grid[row][col - 1]);
+    neighborNodes.push(grid[row][col + 1]);
+  }
+  return neighborNodes.filter(
+    (neighborNodes) => neighborNodes.isVisited !== true
+  );
+};
+
+const sortNodesByDistance = (unvisitedNodes) => {
+  unvisitedNodes.sort((nodeA, nodeB) => {
+    return nodeA.distance - nodeB.distance;
+  });
+};
+
+const getAllNodes = (grid) => {
+  const nodes = [];
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      nodes.push(grid[i][j]);
     }
   }
-  
-  function sortNodesByDistance(unvisitedNodes) {
-    unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
+  return nodes;
+};
+
+export function getShortestPathNodesInOrder(finishNode) {
+  const nodesInShortestPath = [];
+  let currentNode = finishNode;
+  while (currentNode.previousNode !== null) {
+    nodesInShortestPath.unshift(currentNode);
+    currentNode = currentNode.previousNode;
   }
-  
-  function updateUnvisitedNeighbors(node, grid) {
-    const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
-    for (const neighbor of unvisitedNeighbors) {
-      neighbor.distance = node.distance + 1;
-      neighbor.previousNode = node;
-    }
-  }
-  
-  function getUnvisitedNeighbors(node, grid) {
-    const neighbors = [];
-    const {col, row} = node;
-    if (row > 0) neighbors.push(grid[row - 1][col]);
-    if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
-    if (col > 0) neighbors.push(grid[row][col - 1]);
-    if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
-    return neighbors.filter(neighbor => !neighbor.isVisited);
-  }
-  
-  function getAllNodes(grid) {
-    const nodes = [];
-    for (const row of grid) {
-      for (const node of row) {
-        nodes.push(node);
-      }
-    }
-    return nodes;
-  }
-  
-  // Backtracks from the finishNode to find the shortest path.
-  // Only works when called *after* the dijkstra method above.
-  export function getNodesInShortestPathOrder(finishNode) {
-    const nodesInShortestPathOrder = [];
-    let currentNode = finishNode;
-    while (currentNode !== null) {
-      nodesInShortestPathOrder.unshift(currentNode);
-      currentNode = currentNode.previousNode;
-    }
-    return nodesInShortestPathOrder;
-  }
+  return nodesInShortestPath;
+}
