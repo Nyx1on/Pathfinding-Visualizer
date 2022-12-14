@@ -11,12 +11,29 @@
   background-size: cover;
 }
 
-.node-start {
-  background-image: url(../../styling/go-start-svgrepo-com.svg);
+.node-finish-visited{
+  animation-name: visitednode;
+  animation-duration: 1.5s;
+  background-color: rgb(23, 123, 200);
+  background-image: url(../../styling/14274017891654131770.svg);
   background-position: center;
-  background-size: contain;
+  background-size: cover;
 }
 
+.node-start {
+  background-image: url(../../styling/go-start-svgrepo-com.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.node-start-visited{
+  animation-name: visitednode;
+  animation-duration: 1.5s;
+  background-color: rgb(23, 123, 200);
+  background-image: url(../../styling/go-start-svgrepo-com.png);
+  background-position: center;
+  background-size: cover;
+}
 
 .node-wall {
   animation-name: nodewall;
@@ -43,17 +60,18 @@
 .node-visited {
   animation-name: visitednode;
   animation-duration: 1.5s;
-  background-color: rgb(23, 123, 200);
+  background-color: rgb(35, 136, 214);
 }
 
 @keyframes visitednode {
   0% {
-    transform: scale(0.4);
+    transform: scale(0.2);
     background-color: rgb(65, 20, 47);
-    border-radius: 60%;
+    border-radius: 100%;
   }
   50% {
     background-color: rgba(225, 7, 138, 0.76);
+    border-radius: 50%;
   }
   75%{
     transform: scale(1.2);
@@ -61,32 +79,37 @@
   }
   100% {
     transform: scale(1);
-    background-color: rgba(19, 104, 168, 0.84);
+    background-color: rgb(35, 136, 214);
   }
 }
 
+.node-finish-shortestpath{
+  animation-name: shortestpath;
+  animation-duration: 1.5s;
+  background-color: rgba(41, 228, 169, 0.892);
+  background-image: url(../../styling/14274017891654131770.svg);
+  background-position: center;
+  background-size: cover;
+}
 
 .node-shortestpath {
   animation-name: shortestpath;
   animation-duration: 1.5s;
-  background-color: rgb(238, 104, 187);
+  background-color: rgba(41, 228, 116, 0.708);
 }
 
 @keyframes shortestpath {
   0% {
     transform: scale(0.4);
-    background-color: rgba(245, 43, 43, 0.905);
+    background-color: rgba(255, 244, 32, 0.851);
     border-radius: 60%;
   }
-  50% {
-    background-color: rgb(252, 10, 143);
-  }
-  75%{
+  50%{
     transform: scale(1.2);
-    background-color: rgba(241, 72, 176, 0.593);
+    background-color: rgba(39, 255, 50, 0.853);
   }
   100% {
     transform: scale(1);
-    background-color: rgb(241, 72, 176);
+    background-color: rgba(41, 228, 169, 0.892);
   }
 }

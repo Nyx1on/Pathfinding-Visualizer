@@ -2,28 +2,39 @@ import React from "react";
 import "./navbar.css";
 
 export default function Navbar(props) {
-  const { visualizeDijkstra, setStartCreateWalls } = props;
+  const { visualizeDijkstra, startCreateWalls, setStartCreateWalls, clearWalls } = props;
   return (
-    <div className="Navbar">
-      <div className="left">
-        <h1 id="logo">
-          <a href=".">Pathfinding Visualizer</a>
-        </h1>
-      </div>
-      <div className="centre">
+    <>
+      <div className="Navbar">
+        <div className="logo">
+          <h1>
+            Pathfinding Visualizer
+          </h1>
+        </div>
         <div className="buttons">
-          <button className="create-walls"
+          <button
+            className="create-walls"
             onClick={() => {
-              setStartCreateWalls(true);
+              const currentWall = !startCreateWalls;
+              setStartCreateWalls(currentWall);
             }}
           >
             Create Walls
           </button>
-          <button className="visualize-dijkstra" onClick={visualizeDijkstra} >
+          <button className="visualize-dijkstra" onClick={visualizeDijkstra}>
             Visualize Dijkstra's algorithm
+          </button>
+          <button className="gen-btn" onClick={clearWalls}>
+            Clear Walls
           </button>
         </div>
       </div>
-    </div>
+      <div className="footer">
+          <div className="startNode"></div>
+          <div className="text">: Start Node</div>
+          <div className="finishNode"></div>
+          <div className="text">: End Node</div>
+      </div>
+    </>
   );
 }
