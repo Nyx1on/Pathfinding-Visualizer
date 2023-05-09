@@ -12,6 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 To get started with the pathfinding visualizer, clone or download this repository to your local machine.\
 `git clone https://github.com/username/pathfinding-visualizer.git` \
+
 After cloning install the necessary dependencies using the following command: \
 `npm install`
 
