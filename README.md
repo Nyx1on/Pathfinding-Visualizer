@@ -6,11 +6,11 @@ This project is a great tool for anyone interested in learning about pathfinding
 
 ## Key features:
 
- •Interactive web-based interface\
- •Customizable grid size and start/end points\
- •Visualizes the process of Dijkstra's algorithm step-by-step\
- •Allows users to create walls to obstruct the pathfinding algorithm\
- •Animates the shortest path between start and end points\
+ • Interactive web-based interface\
+ • Customizable grid size and start/end points\
+ • Visualizes the process of Dijkstra's algorithm step-by-step\
+ • Allows users to create walls to obstruct the pathfinding algorithm\
+ • Animates the shortest path between start and end points\
 
 ## Installation
 
