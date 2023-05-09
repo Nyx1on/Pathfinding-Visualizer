@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# Dijkstra's Algorithm Pathfinding Visualizer
+
+This is a web-based visualizer for Dijkstra's algorithm, a popular shortest path algorithm, written in JavaScript and HTML/CSS. It allows users to visualize the process of finding the shortest path between two points on a grid, using Dijkstra's algorithm. Users can also create walls to obstruct the pathfinding algorithm, simply by clicking on grid cells.
+
+This project is a great tool for anyone interested in learning about pathfinding algorithms or looking to improve their problem-solving skills.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Installation
+
+To get started with the pathfinding visualizer, clone or download this repository to your local machine.\
+`git clone https://github.com/username/pathfinding-visualizer.git` \
+After cloning install the necessary dependencies using the following command: \
+`npm install`
 
 ## Available Scripts
 
