@@ -4,9 +4,13 @@ This is a web-based visualizer for Dijkstra's algorithm, a popular shortest path
 
 This project is a great tool for anyone interested in learning about pathfinding algorithms or looking to improve their problem-solving skills.
 
-## Getting Started with Create React App
+## Key features:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ •Interactive web-based interface\
+ •Customizable grid size and start/end points\
+ •Visualizes the process of Dijkstra's algorithm step-by-step\
+ •Allows users to create walls to obstruct the pathfinding algorithm\
+ •Animates the shortest path between start and end points\
 
 ## Installation
 
