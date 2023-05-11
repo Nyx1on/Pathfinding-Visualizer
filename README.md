@@ -4,6 +4,12 @@ This is a web-based visualizer for Dijkstra's algorithm, a popular shortest path
 
 This project is a great tool for anyone interested in learning about pathfinding algorithms or looking to improve their problem-solving skills.
 
+## Demo
+Here's a screenshot of the homepage:
+![pathfinding_v3](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/6b4c2835-4690-4d46-b1d7-e9b1b025c0c2)
+![pathfinding_v2](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/37e8a703-faa7-4c4f-85ad-2e8938125165)
+
+
 ## Key features:
 
  • Interactive web-based interface\
