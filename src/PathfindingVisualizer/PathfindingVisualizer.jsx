@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Node from "./Node/Node";
-import "./pathfindingVisualizer.css";
+import "./PathfindingVisualizer.css";
 import { dijkstra, getShortestPathNodesInOrder } from "../algorithm/dijkstra";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../navbar/Navbar";
 
 let START_NODE_ROW = 12;
 let START_NODE_COL = 14;
@@ -16,18 +16,27 @@ export default function PathfindingVisualizer() {
   const [moveStart, setMoveStart] = useState(false);
   const [moveFinish, setMoveFinish] = useState(false);
 
-  useEffect(() => {
-    const createInitialGrid = () => {
-      const node = [];
-      for (let row = 0; row < 25; row++) {
-        const currentRow = [];
-        for (let col = 0; col < 50; col++) {
-          currentRow.push(createNode(row, col));
-        }
-        node.push(currentRow);
+  const createInitialGrid = (reset = false) => {
+    // This reset bool will check wheather the user want to reset the grid or not:
+          //  - if reset -> false then it will take new_row, new_col
+          //  - if reset -> true then it will reset to default coordinates
+    if (reset) {
+      START_NODE_ROW = 12;
+      START_NODE_COL = 14;
+      FINISH_NODE_ROW = 12;
+      FINISH_NODE_COL = 35;
+    }
+    const node = [];
+    for (let row = 0; row < 25; row++) {
+      const currentRow = [];
+      for (let col = 0; col < 50; col++) {
+        currentRow.push(createNode(row, col));
       }
-      setNode(node);
-    };
+      node.push(currentRow);
+    }
+    setNode(node);
+  };
+  useEffect(() => {
     createInitialGrid();
   }, []);
 
@@ -80,6 +89,7 @@ export default function PathfindingVisualizer() {
   };
 
   const handleMouseDown = (isStart, row, col, isFinish) => {
+    console.log("Im down");
     if (isStart) {
       moveStartNode(row, col);
       setMoveStart(true);
@@ -100,6 +110,8 @@ export default function PathfindingVisualizer() {
   };
 
   const handleMouseUp = (row, col) => {
+    console.log("Im up");
+
     if (startCreateWalls) {
       setMouseIsPressed(false);
     }
@@ -151,7 +163,6 @@ export default function PathfindingVisualizer() {
       }, 50 * i);
     }
   };
-
   const visualizeDijkstra = () => {
     const startNode = node[START_NODE_ROW][START_NODE_COL];
     const finishNode = node[FINISH_NODE_ROW][FINISH_NODE_COL];
@@ -162,6 +173,25 @@ export default function PathfindingVisualizer() {
       alert("Could not find the shortest path.");
   };
 
+  const reset = () => {
+    // Initializing the Default Grid
+    createInitialGrid(true);
+    // Getting All the visited nodes and shortestpath Visited Node.
+    const allVisitedNodes = document.querySelectorAll(`.node-visited`);
+    const allShortestPathNodes = document.querySelectorAll(`.node-shortestpath`);
+
+    // Using forEach iterating over each DOM element and removing node-visited class from both visited and shortedPathVisited Node's
+    allVisitedNodes.forEach(v => {
+      v.classList.remove("node-visited")
+    })
+    allShortestPathNodes.forEach(v => {
+      v.classList.remove("node-shortestpath")
+    })
+
+    // At last to change th BG color of start and end node to default replacing with initial Classes.
+    document.querySelector(".node-start-visited").classList.replace("node-start-visited","node-start")
+    document.querySelector(".node-finish-shortestpath").classList.replace("node-finish-shortestpath","node-finish")
+  };
   return (
     <>
       <div className="pathfinding-visualiser">
@@ -170,6 +200,7 @@ export default function PathfindingVisualizer() {
           startCreateWalls={startCreateWalls}
           setStartCreateWalls={setStartCreateWalls}
           clearWalls={clearWalls}
+          reset={reset}
         ></Navbar>
       </div>
       <table className="grid">

@@ -109,3 +109,23 @@ button {
   background-position: center;
   background-size: cover;
 }
+
+.reset-btn{
+  color: #FF0033;
+  border: 1px dashed #FF0033;
+  padding: .65rem 2rem;
+}
+
+
+.reset-btn:hover{
+  transform: scale(1.1);
+  transition: background-color 0.25s ease-out;
+  transition: transform 0.05s ease-in;
+}
+
+.reset-btn:active{
+  transform: scale(1);
+  color: rgb(235, 235, 235);
+  background-color: #FF0033;
+  box-shadow: 2px 2px 10px #0f4e0d inset;
+}
