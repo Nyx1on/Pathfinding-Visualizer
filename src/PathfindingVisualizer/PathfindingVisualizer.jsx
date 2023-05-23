@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Node from "./Node/Node";
-import "./pathfindingVisualizer.css";
+import "./PathfindingVisualizer.css";
 import { dijkstra, getShortestPathNodesInOrder } from "../algorithm/dijkstra";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../navbar/Navbar";
 
 let START_NODE_ROW = 12;
 let START_NODE_COL = 14;
