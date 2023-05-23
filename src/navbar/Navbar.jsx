@@ -1,8 +1,18 @@
 import React from "react";
 import "./navbar.css";
+import { useRef } from "react";
 
 export default function Navbar(props) {
   const { visualizeDijkstra, startCreateWalls, setStartCreateWalls, clearWalls } = props;
+
+
+  const btnRef = useRef()
+
+  function handleClick() {
+    const currentWall = !startCreateWalls;
+    setStartCreateWalls(currentWall);
+    btnRef.current.classList.toggle('focus')
+  }
   return (
     <>
       <div className="Navbar">
@@ -13,11 +23,9 @@ export default function Navbar(props) {
         </div>
         <div className="buttons">
           <button
+            ref={btnRef}
             className="create-walls"
-            onClick={() => {
-              const currentWall = !startCreateWalls;
-              setStartCreateWalls(currentWall);
-            }}
+            onClick={handleClick}
           >
             Create Walls
           </button>
