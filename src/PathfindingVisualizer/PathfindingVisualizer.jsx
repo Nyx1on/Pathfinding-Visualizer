@@ -16,18 +16,19 @@ export default function PathfindingVisualizer() {
   const [moveStart, setMoveStart] = useState(false);
   const [moveFinish, setMoveFinish] = useState(false);
 
-  useEffect(() => {
-    const createInitialGrid = () => {
-      const node = [];
-      for (let row = 0; row < 25; row++) {
-        const currentRow = [];
-        for (let col = 0; col < 50; col++) {
-          currentRow.push(createNode(row, col));
-        }
-        node.push(currentRow);
+  const createInitialGrid = () => {
+    const node = [];
+    for (let row = 0; row < 25; row++) {
+      const currentRow = [];
+      for (let col = 0; col < 50; col++) {
+        currentRow.push(createNode(row, col));
       }
-      setNode(node);
-    };
+      node.push(currentRow);
+    }
+    setNode(node);
+  };
+
+  useEffect(() => {
     createInitialGrid();
   }, []);
 
@@ -147,6 +148,9 @@ export default function PathfindingVisualizer() {
         } else {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-shortestpath";
+          document.getElementById(
+            "node node-finish-visited"
+          ).className = ` node-${node.row}-${node.col}`;
         }
       }, 50 * i);
     }
@@ -162,6 +166,26 @@ export default function PathfindingVisualizer() {
       alert("Could not find the shortest path.");
   };
 
+  const reset = () => {
+    createInitialGrid();
+    const newNode = node.slice();
+    for (var i = 0; i < newNode.length; i++) {
+      for (var j = 0; j < newNode[i].length; j++) { 
+        document.getElementById(`node-${i}-${j}`).className =
+            "node";
+        if(newNode[i][j].isStart){
+          document.getElementById(`node-${i}-${j}`).className =
+            "node node-start";
+        }
+        if(newNode[i][j].isFinish){
+          document.getElementById(`node-${i}-${j}`).className =
+            "node node-finish";
+        }
+      }
+    setNode(newNode);
+    }
+  };
+
   return (
     <>
       <div className="pathfinding-visualiser">
@@ -170,6 +194,7 @@ export default function PathfindingVisualizer() {
           startCreateWalls={startCreateWalls}
           setStartCreateWalls={setStartCreateWalls}
           clearWalls={clearWalls}
+          reset={reset}
         ></Navbar>
       </div>
       <table className="grid">

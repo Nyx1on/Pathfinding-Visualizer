@@ -2,7 +2,7 @@ import React from "react";
 import "./navbar.css";
 
 export default function Navbar(props) {
-  const { visualizeDijkstra, startCreateWalls, setStartCreateWalls, clearWalls } = props;
+  const { visualizeDijkstra, startCreateWalls, setStartCreateWalls, clearWalls, reset } = props;
   return (
     <>
       <div className="Navbar">
@@ -26,6 +26,9 @@ export default function Navbar(props) {
           </button>
           <button className="gen-btn" onClick={clearWalls}>
             Clear Walls
+          </button>
+          <button className="gen-btn" onClick={reset}>
+            Reset
           </button>
         </div>
       </div>
