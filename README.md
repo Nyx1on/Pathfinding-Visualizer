@@ -1,6 +1,30 @@
-# Getting Started with Create React App
+# Dijkstra's Algorithm Pathfinding Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a web-based visualizer for Dijkstra's algorithm, a popular shortest path algorithm, written in JavaScript and HTML/CSS. It allows users to visualize the process of finding the shortest path between two points on a grid, using Dijkstra's algorithm. Users can also create walls to obstruct the pathfinding algorithm, simply by clicking on grid cells.
+
+This project is a great tool for anyone interested in learning about pathfinding algorithms or looking to improve their problem-solving skills.
+
+## Demo
+Here's a screenshot of the homepage:
+![pathfinding_v3](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/6b4c2835-4690-4d46-b1d7-e9b1b025c0c2)
+![pathfinding_v2](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/37e8a703-faa7-4c4f-85ad-2e8938125165)
+
+
+## Key features:
+
+ • Interactive web-based interface\
+ • Customizable grid size and start/end points\
+ • Visualizes the process of Dijkstra's algorithm step-by-step\
+ • Allows users to create walls to obstruct the pathfinding algorithm\
+ • Animates the shortest path between start and end points\
+
+## Installation
+
+To get started with the pathfinding visualizer, clone or download this repository to your local machine.\
+`git clone https://github.com/username/pathfinding-visualizer.git` \
+
+After cloning install the necessary dependencies using the following command: \
+`npm install`
 
 ## Available Scripts
 
@@ -38,6 +62,10 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Contributing
+
+Contributions are welcome! If you find any bugs or have suggestions for new features, feel free to submit a pull request or open an issue on the GitHub repository.
 
 ## Learn More
 

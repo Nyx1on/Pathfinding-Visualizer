@@ -41,6 +41,7 @@
   animation-timing-function: ease-out;
   background-color: rgb(27, 27, 27);
   outline: 0px;
+
 }
 
 @keyframes nodewall{
