@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Node from "./Node/Node";
-import "./PathfindingVisualizer.css";
+import "./pathfindingVisualizer.css";
 import { dijkstra, getShortestPathNodesInOrder } from "../algorithm/dijkstra";
 import Navbar from "../navbar/Navbar";
 
