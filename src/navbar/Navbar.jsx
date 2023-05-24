@@ -3,7 +3,7 @@ import "./navbar.css";
 import { useRef } from "react";
 
 export default function Navbar(props) {
-  const { visualizeDijkstra, startCreateWalls, setStartCreateWalls, clearWalls } = props;
+  const { visualizeDijkstra, startCreateWalls, setStartCreateWalls, clearWalls,reset } = props;
 
 
   const btnRef = useRef()
@@ -34,6 +34,9 @@ export default function Navbar(props) {
           </button>
           <button className="gen-btn" onClick={clearWalls}>
             Clear Walls
+          </button>
+          <button className="reset-btn" onClick={reset}>
+            Reset
           </button>
         </div>
       </div>
