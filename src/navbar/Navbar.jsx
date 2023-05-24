@@ -5,9 +5,7 @@ import { useRef } from "react";
 export default function Navbar(props) {
   const { visualizeDijkstra, startCreateWalls, setStartCreateWalls, clearWalls,reset } = props;
 
-
   const btnRef = useRef()
-
   function handleClick() {
     const currentWall = !startCreateWalls;
     setStartCreateWalls(currentWall);

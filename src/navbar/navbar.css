@@ -6,7 +6,7 @@
   background-color: #020d21;
   padding-top: 15px;
 }
-.logo{
+.logo {
   display: flex;
 }
 h1 {
@@ -29,14 +29,14 @@ button {
   border: 0px;
 }
 
-.gen-btn:hover{
+.gen-btn:hover {
   color: #1fac1d;
   transform: scale(1.1);
   transition: background-color 0.25s ease-out;
   transition: transform 0.05s ease-in;
 }
 
-.gen-btn:active{
+.gen-btn:active {
   transform: scale(1);
   color: rgb(235, 235, 235);
   background-color: #1fac1d;
@@ -54,6 +54,10 @@ button {
   color: rgb(235, 235, 235);
   background-color: #1fac1d;
   box-shadow: 2px 2px 10px #0f4e0d inset;
+}
+.focus:hover {
+  transform: scale(0.95);
+  color: rgb(235, 235, 235);
 }
 .visualize-dijkstra {
   font-weight: 600;
@@ -84,8 +88,8 @@ button {
   justify-content: center;
 }
 
-.text{
-    margin-right: 60px;
+.text {
+  margin-right: 60px;
 }
 
 .startNode {

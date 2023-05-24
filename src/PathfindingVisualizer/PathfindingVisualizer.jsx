@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Node from "./Node/Node";
-import "./PathfindingVisualizer.css";
+import "./pathfindingVisualizer.css";
 import { dijkstra, getShortestPathNodesInOrder } from "../algorithm/dijkstra";
 import Navbar from "../navbar/Navbar";
 
@@ -25,6 +25,7 @@ export default function PathfindingVisualizer() {
       FINISH_NODE_ROW = 12;
       FINISH_NODE_COL = 35;
     }
+
     const node = [];
     for (let row = 0; row < 25; row++) {
       const currentRow = [];
@@ -35,6 +36,7 @@ export default function PathfindingVisualizer() {
     }
     setNode(node);
   };
+
   useEffect(() => {
     createInitialGrid();
   }, []);
@@ -154,6 +156,9 @@ export default function PathfindingVisualizer() {
         } else {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-shortestpath";
+          document.getElementById(
+            "node node-finish-visited"
+          ).className = ` node-${node.row}-${node.col}`;
         }
       }, 50 * i);
     }
@@ -193,6 +198,7 @@ export default function PathfindingVisualizer() {
       .querySelector(".node-finish-shortestpath")
       .classList.replace("node-finish-shortestpath", "node-finish");
   };
+
   return (
     <>
       <div className="pathfinding-visualiser">
