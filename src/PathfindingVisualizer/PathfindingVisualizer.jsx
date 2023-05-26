@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Node from "./Node/Node";
-import "./pathfindingVisualizer.css";
 import { dijkstra, getShortestPathNodesInOrder } from "../algorithm/dijkstra";
 import Navbar from "../navbar/Navbar";
+import Node from "./Node/Node";
+import "./pathfindingvisualizer.css";
 
 let START_NODE_ROW = 12;
 let START_NODE_COL = 14;
@@ -170,19 +170,18 @@ export default function PathfindingVisualizer() {
     createInitialGrid();
     const newNode = node.slice();
     for (var i = 0; i < newNode.length; i++) {
-      for (var j = 0; j < newNode[i].length; j++) { 
-        document.getElementById(`node-${i}-${j}`).className =
-            "node";
-        if(newNode[i][j].isStart){
+      for (var j = 0; j < newNode[i].length; j++) {
+        document.getElementById(`node-${i}-${j}`).className = "node";
+        if (newNode[i][j].isStart) {
           document.getElementById(`node-${i}-${j}`).className =
             "node node-start";
         }
-        if(newNode[i][j].isFinish){
+        if (newNode[i][j].isFinish) {
           document.getElementById(`node-${i}-${j}`).className =
             "node node-finish";
         }
       }
-    setNode(newNode);
+      setNode(newNode);
     }
   };
 
