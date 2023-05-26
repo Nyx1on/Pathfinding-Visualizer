@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { dijkstra, getShortestPathNodesInOrder } from "../algorithm/dijkstra";
+import { dijkstra, getShortestPathNodesInOrder } from "../../algorithm/dijkstra";
 import Navbar from "../../navbar/Navbar";
 import Node from "../Node/Node";
 import "./pathfindingvisualizer.css";
