@@ -9,8 +9,6 @@ Here's a screenshot of the homepage:
 ![pathfinding_v3](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/6b4c2835-4690-4d46-b1d7-e9b1b025c0c2)
 ![pathfinding_v2](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/37e8a703-faa7-4c4f-85ad-2e8938125165)
 
-You can try out the application here: (https://pathfindviz.netlify.app/)
-
 ## Key features:
 
  • Interactive web-based interface\
