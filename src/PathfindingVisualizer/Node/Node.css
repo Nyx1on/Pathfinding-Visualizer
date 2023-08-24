@@ -1,17 +1,17 @@
 .node {
   width: 30px;
   height: 30px;
-  border: 1px solid rgb(175, 216, 248);
-  background-color: white;
+  border: 2px solid rgb(175, 216, 248);
+  background-color: #262730;
 }
 
 .node-finish {
-  background-image: url(../../styling/14274017891654131770.svg);
+  background-color: rgb(236, 67, 194);
   background-position: center;
   background-size: cover;
 }
 
-.node-finish-visited{
+.node-finish-visited {
   animation-name: visitednode;
   animation-duration: 1.5s;
   background-color: rgb(23, 123, 200);
@@ -21,12 +21,12 @@
 }
 
 .node-start {
-  background-image: url(../../styling/go-start-svgrepo-com.png);
+  background-color: rgb(42, 128, 194);
   background-position: center;
   background-size: cover;
 }
 
-.node-start-visited{
+.node-start-visited {
   animation-name: visitednode;
   animation-duration: 1.5s;
   background-color: rgb(23, 123, 200);
@@ -41,19 +41,18 @@
   animation-timing-function: ease-out;
   background-color: rgb(27, 27, 27);
   outline: 0px;
-
 }
 
-@keyframes nodewall{
-  0%{
+@keyframes nodewall {
+  0% {
     transform: scale(1.5);
     background-color: rgb(173, 173, 173);
   }
-  50%{
+  50% {
     transform: scale(1);
     background-color: rgb(99, 99, 99);
   }
-  100%{
+  100% {
     background-color: rgb(27, 27, 27);
   }
 }
@@ -74,7 +73,7 @@
     background-color: rgba(225, 7, 138, 0.76);
     border-radius: 50%;
   }
-  75%{
+  75% {
     transform: scale(1.2);
     background-color: rgba(0, 243, 243, 0.379);
   }
@@ -84,7 +83,7 @@
   }
 }
 
-.node-finish-shortestpath{
+.node-finish-shortestpath {
   animation-name: shortestpath;
   animation-duration: 1.5s;
   background-color: rgba(41, 228, 169, 0.892);
@@ -105,7 +104,7 @@
     background-color: rgba(255, 244, 32, 0.851);
     border-radius: 60%;
   }
-  50%{
+  50% {
     transform: scale(1.2);
     background-color: rgba(39, 255, 50, 0.853);
   }

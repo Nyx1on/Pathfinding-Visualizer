@@ -1,17 +1,37 @@
-.Navbar {
-  width: 100%;
-  height: 180px;
-  font-family: "Montserrat", sans-serif;
+.SideBar {
+  /* Add styles for left alignment */
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 400px; /* Adjust the width as needed */
+  background-color: #030a16;
   color: rgb(224, 236, 246);
-  background-color: #020d21;
   padding-top: 15px;
-}
-.logo {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  transition: transform 0.3s ease-in-out;
+  /* Initially hide the sidebar off-screen */
 }
+
+.SideBar.open {
+  /* Move the sidebar into view when open */
+  transform: translateX(0);
+}
+
+.SideBar ul {
+  list-style: none;
+}
+/* The rest of your styles remain the same */
+.item {
+  padding: 5px 0px;
+}
+
 h1 {
   color: rgb(224, 236, 246);
-  font-size: 2.2rem;
+  font-size: 2rem;
   padding: 0px 10px 0px 20px;
 }
 

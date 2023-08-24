@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { dijkstra, getShortestPathNodesInOrder } from "../../algorithm/dijkstra";
-import Navbar from "../../navbar/Navbar";
+import {
+  dijkstra,
+  getShortestPathNodesInOrder,
+} from "../../algorithm/dijkstra";
+import SideBar from "../../navbar/SideBar";
 import Node from "../Node/Node";
 import "./pathfindingvisualizer.css";
 
 let START_NODE_ROW = 12;
 let START_NODE_COL = 14;
 let FINISH_NODE_ROW = 12;
-let FINISH_NODE_COL = 35;
+let FINISH_NODE_COL = 18;
 
 export default function PathfindingVisualizer() {
   const [node, setNode] = useState([]);
@@ -20,7 +23,7 @@ export default function PathfindingVisualizer() {
     const node = [];
     for (let row = 0; row < 25; row++) {
       const currentRow = [];
-      for (let col = 0; col < 50; col++) {
+      for (let col = 0; col < 30; col++) {
         currentRow.push(createNode(row, col));
       }
       node.push(currentRow);
@@ -187,49 +190,58 @@ export default function PathfindingVisualizer() {
 
   return (
     <>
-      <div className="pathfinding-visualiser">
-        <Navbar
-          visualizeDijkstra={visualizeDijkstra}
-          startCreateWalls={startCreateWalls}
-          setStartCreateWalls={setStartCreateWalls}
-          clearWalls={clearWalls}
-          reset={reset}
-        ></Navbar>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          backgroundColor: "#262730",
+        }}
+      >
+        <div className="pathfinding-visualiser">
+          <SideBar
+            visualizeDijkstra={visualizeDijkstra}
+            startCreateWalls={startCreateWalls}
+            setStartCreateWalls={setStartCreateWalls}
+            clearWalls={clearWalls}
+            reset={reset}
+          ></SideBar>
+        </div>
+        <table className="grid">
+          <tbody>
+            {node.map((row, rowIdx) => {
+              return (
+                <tr className="rows" key={rowIdx}>
+                  {row.map((currentNode, currentNodeIdx) => {
+                    const { row, col, isStart, isFinish, isVisited, isWall } =
+                      currentNode;
+                    return (
+                      <Node
+                        key={currentNodeIdx}
+                        row={row}
+                        col={col}
+                        isStart={isStart}
+                        isFinish={isFinish}
+                        isVisited={isVisited}
+                        isWall={isWall}
+                        onMouseDown={(isStart, row, col, isFinish) => {
+                          handleMouseDown(isStart, row, col, isFinish);
+                        }}
+                        onMouseEnter={(row, col) => {
+                          handleMouseEnter(row, col);
+                        }}
+                        onMouseUp={(row, col) => {
+                          handleMouseUp(row, col);
+                        }}
+                      ></Node>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
-      <table className="grid">
-        <tbody>
-          {node.map((row, rowIdx) => {
-            return (
-              <tr className="rows" key={rowIdx}>
-                {row.map((currentNode, currentNodeIdx) => {
-                  const { row, col, isStart, isFinish, isVisited, isWall } =
-                    currentNode;
-                  return (
-                    <Node
-                      key={currentNodeIdx}
-                      row={row}
-                      col={col}
-                      isStart={isStart}
-                      isFinish={isFinish}
-                      isVisited={isVisited}
-                      isWall={isWall}
-                      onMouseDown={(isStart, row, col, isFinish) => {
-                        handleMouseDown(isStart, row, col, isFinish);
-                      }}
-                      onMouseEnter={(row, col) => {
-                        handleMouseEnter(row, col);
-                      }}
-                      onMouseUp={(row, col) => {
-                        handleMouseUp(row, col);
-                      }}
-                    ></Node>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
     </>
   );
 }

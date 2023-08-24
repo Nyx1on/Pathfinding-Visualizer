@@ -1,10 +1,10 @@
-*{
+* {
   box-sizing: border-box;
-}  
-
-.grid{
-  border-spacing: 2px;
-  border-collapse: collapse;
-  margin: 0px auto auto auto;
 }
 
+.grid {
+  border-spacing: 2px;
+  border-collapse: collapse;
+  margin: 50px 100px;
+  padding: 5px;
+}
