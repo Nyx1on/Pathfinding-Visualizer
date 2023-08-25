@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  dijkstra,
-  getShortestPathNodesInOrder,
-} from "../../algorithm/dijkstra";
+import { getShortestPathNodesInOrder } from "../../algorithm/main";
+import { dijkstra } from "../../algorithm/dijkstra";
+import { bfs } from "../../algorithm/bfs";
 import SideBar from "../../navbar/SideBar";
 import Node from "../Node/Node";
 import "./pathfindingvisualizer.css";
@@ -163,7 +162,9 @@ export default function PathfindingVisualizer() {
     const startNode = node[START_NODE_ROW][START_NODE_COL];
     const finishNode = node[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(node, startNode, finishNode);
+    console.log(finishNode);
     const nodesInShortestPath = getShortestPathNodesInOrder(finishNode);
+    console.log(nodesInShortestPath);
     animateDijkstra(visitedNodesInOrder, nodesInShortestPath);
     if (finishNode.previousNode === null)
       alert("Could not find the shortest path.");
@@ -191,7 +192,7 @@ export default function PathfindingVisualizer() {
   return (
     <>
       <div
-      className="grid-container"
+        className="grid-container"
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -234,7 +235,7 @@ export default function PathfindingVisualizer() {
                         onMouseUp={(row, col) => {
                           handleMouseUp(row, col);
                         }}
-                      ></Node>
+                      />
                     );
                   })}
                 </tr>
