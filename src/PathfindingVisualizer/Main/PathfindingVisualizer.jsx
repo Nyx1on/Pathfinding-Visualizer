@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getShortestPathNodesInOrder } from "../../algorithm/main";
 import { dijkstra } from "../../algorithm/dijkstra";
 import { bfs } from "../../algorithm/bfs";
+import { dfs } from "../../algorithm/dfs";
 import SideBar from "../../navbar/SideBar";
 import Node from "../Node/Node";
 import "./pathfindingvisualizer.css";
+import { aStar } from "../../algorithm/aStar";
 
 let START_NODE_ROW = 12;
 let START_NODE_COL = 14;
@@ -17,6 +19,9 @@ export default function PathfindingVisualizer() {
   const [startCreateWalls, setStartCreateWalls] = useState(false);
   const [moveStart, setMoveStart] = useState(false);
   const [moveFinish, setMoveFinish] = useState(false);
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState("dijkstra");
+  const [speed, setSpeed] = useState(2);
+  const [time, setTime] = useState(10);
 
   const createInitialGrid = () => {
     const node = [];
@@ -116,7 +121,7 @@ export default function PathfindingVisualizer() {
     }
   };
 
-  const animateDijkstra = (visitedNodesInOrder, nodesInShortestPath) => {
+  const animateALgorithm = (visitedNodesInOrder, nodesInShortestPath) => {
     for (let i = 0; i < visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length - 1) {
         setTimeout(() => {
@@ -137,6 +142,7 @@ export default function PathfindingVisualizer() {
             "node node-visited";
         }
       }, 10 * i);
+      console.log(time);
     }
   };
 
@@ -158,14 +164,24 @@ export default function PathfindingVisualizer() {
     }
   };
 
-  const visualizeDijkstra = () => {
+  const vizualiseAlgorithm = () => {
     const startNode = node[START_NODE_ROW][START_NODE_COL];
     const finishNode = node[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodesInOrder = dijkstra(node, startNode, finishNode);
-    console.log(finishNode);
+    if (selectedAlgorithm == "dijkstra") {
+      var visitedNodesInOrder = dijkstra(node, startNode, finishNode);
+    }
+    if (selectedAlgorithm == "BFS") {
+      var visitedNodesInOrder = bfs(node, startNode, finishNode);
+    }
+    if (selectedAlgorithm == "DFS") {
+      var visitedNodesInOrder = dfs(node, startNode, finishNode);
+    }
+    // if (selectedAlgorithm == "AStar") {
+    //   var visitedNodesInOrder = aStar(node, startNode, finishNode);
+    // }
     const nodesInShortestPath = getShortestPathNodesInOrder(finishNode);
     console.log(nodesInShortestPath);
-    animateDijkstra(visitedNodesInOrder, nodesInShortestPath);
+    animateALgorithm(visitedNodesInOrder, nodesInShortestPath);
     if (finishNode.previousNode === null)
       alert("Could not find the shortest path.");
   };
@@ -202,11 +218,15 @@ export default function PathfindingVisualizer() {
       >
         <div className="pathfinding-visualiser">
           <SideBar
-            visualizeDijkstra={visualizeDijkstra}
+            selectedAlgorithm={selectedAlgorithm}
+            setSelectedAlgorithm={setSelectedAlgorithm}
+            vizualiseAlgorithm={vizualiseAlgorithm}
             startCreateWalls={startCreateWalls}
             setStartCreateWalls={setStartCreateWalls}
             clearWalls={clearWalls}
             reset={reset}
+            time={time}
+            setTime={setTime}
           ></SideBar>
         </div>
         <table className="grid">

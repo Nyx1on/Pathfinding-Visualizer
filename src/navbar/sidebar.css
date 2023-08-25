@@ -103,7 +103,7 @@ button {
 
 .text {
   margin-right: 60px;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .startNode {
@@ -124,6 +124,21 @@ button {
   background-color: rgb(236, 67, 194);
   background-position: center;
   background-size: cover;
+}
+
+.algorithm-selector {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Style the option elements */
+.algorithm-selector option {
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+  border: none;
 }
 
 @media (max-width: 768px) {
