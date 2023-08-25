@@ -191,6 +191,7 @@ export default function PathfindingVisualizer() {
   return (
     <>
       <div
+      className="grid-container"
         style={{
           display: "flex",
           justifyContent: "space-between",

@@ -54,14 +54,30 @@ export default function SideBar(props) {
                 Visualize Dijkstra's algorithm
               </button>
             </li>
+            <li
+              className="item"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                padding: "16px",
+              }}
+            >
+              <div className="startNode" />
+              <div className="text" style={{ marginLeft: "20px" }}>
+                : Start Node
+              </div>
+            </li>
+            <li
+              className="item"
+              style={{ display: "flex", alignItems: "center", padding: "16px" }}
+            >
+              <div className="finishNode"></div>
+              <div className="text" style={{ marginLeft: "20px" }}>
+                : End Node
+              </div>
+            </li>
           </ul>
         </div>
-      </div>
-      <div className="footer">
-        <div className="startNode"></div>
-        <div className="text">: Start Node</div>
-        <div className="finishNode"></div>
-        <div className="text">: End Node</div>
       </div>
     </>
   );

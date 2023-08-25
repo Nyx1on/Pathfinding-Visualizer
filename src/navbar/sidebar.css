@@ -1,10 +1,9 @@
 .SideBar {
-  /* Add styles for left alignment */
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 400px; /* Adjust the width as needed */
+  width: 400px;
   background-color: #030a16;
   color: rgb(224, 236, 246);
   padding-top: 15px;
@@ -13,12 +12,6 @@
   align-items: flex-start;
   justify-content: flex-start;
   transition: transform 0.3s ease-in-out;
-  /* Initially hide the sidebar off-screen */
-}
-
-.SideBar.open {
-  /* Move the sidebar into view when open */
-  transform: translateX(0);
 }
 
 .SideBar ul {
@@ -110,6 +103,7 @@ button {
 
 .text {
   margin-right: 60px;
+  font-size: 1.2rem;
 }
 
 .startNode {
@@ -117,7 +111,7 @@ button {
   height: 40px;
   border: 1px solid rgb(175, 216, 248);
   margin-right: 5px;
-  background-image: url(../styling/go-start-svgrepo-com.png);
+  background-color: rgb(113, 255, 132);
   background-position: center;
   background-size: cover;
 }
@@ -127,7 +121,18 @@ button {
   height: 40px;
   border: 1px solid rgb(175, 216, 248);
   margin-right: 5px;
-  background-image: url(../styling/14274017891654131770.svg);
+  background-color: rgb(236, 67, 194);
   background-position: center;
   background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .SideBar {
+    position: relative;
+    top: 0;
+    width: 100%;
+  }
+  .item {
+    padding: 2px 0px;
+  }
 }

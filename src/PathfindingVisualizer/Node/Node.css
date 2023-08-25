@@ -58,7 +58,7 @@
 .node-visited {
   animation-name: visitednode;
   animation-duration: 1.5s;
-  background-color: rgb(37, 149, 235)
+  background-color: rgb(37, 149, 235);
 }
 
 @keyframes visitednode {
@@ -108,5 +108,12 @@
   100% {
     transform: scale(1);
     background-color: #fddf66;
+  }
+}
+
+@media (max-width: 768px) {
+  .node {
+    width: 20px;
+    height: 20px;
   }
 }

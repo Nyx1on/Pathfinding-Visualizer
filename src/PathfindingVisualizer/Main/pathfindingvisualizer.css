@@ -2,9 +2,26 @@
   box-sizing: border-box;
 }
 
+.grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .grid {
   border-spacing: 2px;
   border-collapse: collapse;
   margin: 50px 100px;
   padding: 5px;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    flex-direction: column;
+  }
+  .grid {
+    border-spacing: 2px;
+    border-collapse: collapse;
+    margin: 20px 10px;
+    padding: 5px;
+  }
 }
