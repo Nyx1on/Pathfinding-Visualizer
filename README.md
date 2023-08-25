@@ -6,8 +6,8 @@ This project is a great tool for anyone interested in learning about pathfinding
 
 ## Demo
 Here's a screenshot of the homepage:
-![Screenshot 2023-08-26 033808](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/486a1d5b-08f0-45c6-9dc3-fe4890da1269)
 ![Screenshot 2023-08-26 033504](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/dd787d80-1964-4c85-9ea9-0d0820119bd1)
+![Screenshot 2023-08-26 033808](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/486a1d5b-08f0-45c6-9dc3-fe4890da1269)
 
 ## Key features:
 
