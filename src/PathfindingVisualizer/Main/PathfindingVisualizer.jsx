@@ -19,7 +19,6 @@ export default function PathfindingVisualizer() {
   const [moveStart, setMoveStart] = useState(false);
   const [moveFinish, setMoveFinish] = useState(false);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState("dijkstra");
-  const [time, setTime] = useState(10);
   const [distanceFromStart, setDistanceFromStart] = useState(Infinity);
 
   useEffect(() => {
@@ -226,8 +225,6 @@ export default function PathfindingVisualizer() {
             setStartCreateWalls={setStartCreateWalls}
             clearWalls={clearWalls}
             reset={reset}
-            time={time}
-            setTime={setTime}
             distanceFromStart={distanceFromStart}
           ></SideBar>
         </div>

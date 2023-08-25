@@ -11,8 +11,6 @@ export default function SideBar(props) {
     setStartCreateWalls,
     clearWalls,
     reset,
-    time,
-    setTime,
     distanceFromStart,
   } = props;
 
