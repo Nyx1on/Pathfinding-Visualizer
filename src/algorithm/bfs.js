@@ -12,7 +12,7 @@ export function bfs(grid, startNode, finishNode) {
     currentNode.isVisited = true;
     visitedNodesInOrder.push(currentNode);
 
-    if (currentNode == finishNode) return visitedNodesInOrder;
+    if (currentNode === finishNode) return visitedNodesInOrder;
 
     const neighborNodes = getNeighborNodes(currentNode, grid);
 

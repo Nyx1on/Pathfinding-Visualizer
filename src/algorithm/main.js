@@ -19,16 +19,16 @@ export const getNeighborNodes = (currentNode, grid) => {
     neighborNodes.push(grid[row][col - 1]);
     neighborNodes.push(grid[row][col + 1]);
   }
-  if (row == 0) {
+  if (row === 0) {
     neighborNodes.push(grid[row + 1][col]);
   }
-  if (col == 0) {
+  if (col === 0) {
     neighborNodes.push(grid[row][col + 1]);
   }
-  if (row == grid.length - 1) {
+  if (row === grid.length - 1) {
     neighborNodes.push(grid[row - 1][col]);
   }
-  if (col == grid[0].length - 1) {
+  if (col === grid[0].length - 1) {
     neighborNodes.push(grid[row][col - 1]);
   }
   return neighborNodes.filter(

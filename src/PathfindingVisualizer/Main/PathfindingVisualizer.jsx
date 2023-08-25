@@ -144,9 +144,6 @@ export default function PathfindingVisualizer() {
         }
       }, 10 * i);
     }
-    setDistanceFromStart(
-      visitedNodesInOrder[visitedNodesInOrder.length - 1].distance
-    );
   };
 
   const animateShortestPath = (nodesInShortestPath) => {
@@ -170,13 +167,13 @@ export default function PathfindingVisualizer() {
   const vizualiseAlgorithm = () => {
     const startNode = node[START_NODE_ROW][START_NODE_COL];
     const finishNode = node[FINISH_NODE_ROW][FINISH_NODE_COL];
-    if (selectedAlgorithm == "dijkstra") {
+    if (selectedAlgorithm === "dijkstra") {
       var visitedNodesInOrder = dijkstra(node, startNode, finishNode);
     }
-    if (selectedAlgorithm == "BFS") {
+    if (selectedAlgorithm === "BFS") {
       var visitedNodesInOrder = bfs(node, startNode, finishNode);
     }
-    if (selectedAlgorithm == "DFS") {
+    if (selectedAlgorithm === "DFS") {
       var visitedNodesInOrder = dfs(node, startNode, finishNode);
     }
     // if (selectedAlgorithm == "AStar") {
