@@ -6,7 +6,6 @@ import { dfs } from "../../algorithm/dfs";
 import SideBar from "../../navbar/SideBar";
 import Node from "../Node/Node";
 import "./pathfindingvisualizer.css";
-import { aStar } from "../../algorithm/aStar";
 
 let START_NODE_ROW = 12;
 let START_NODE_COL = 14;
@@ -20,23 +19,23 @@ export default function PathfindingVisualizer() {
   const [moveStart, setMoveStart] = useState(false);
   const [moveFinish, setMoveFinish] = useState(false);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState("dijkstra");
-  const [speed, setSpeed] = useState(2);
   const [time, setTime] = useState(10);
   const [distanceFromStart, setDistanceFromStart] = useState(Infinity);
 
-  const createInitialGrid = () => {
-    const node = [];
-    for (let row = 0; row < 25; row++) {
-      const currentRow = [];
-      for (let col = 0; col < 30; col++) {
-        currentRow.push(createNode(row, col));
-      }
-      node.push(currentRow);
-    }
-    setNode(node);
-  };
-
   useEffect(() => {
+    const createInitialGrid = () => {
+      setNode((prevNode) => {
+        const newNode = [];
+        for (let row = 0; row < 25; row++) {
+          const currentRow = [];
+          for (let col = 0; col < 30; col++) {
+            currentRow.push(createNode(row, col));
+          }
+          newNode.push(currentRow);
+        }
+        return newNode;
+      });
+    };
     createInitialGrid();
   }, []);
 
@@ -144,6 +143,7 @@ export default function PathfindingVisualizer() {
         }
       }, 10 * i);
     }
+    setDistanceFromStart(nodesInShortestPath.slice([-1][0]).distance);
   };
 
   const animateShortestPath = (nodesInShortestPath) => {
@@ -167,14 +167,15 @@ export default function PathfindingVisualizer() {
   const vizualiseAlgorithm = () => {
     const startNode = node[START_NODE_ROW][START_NODE_COL];
     const finishNode = node[FINISH_NODE_ROW][FINISH_NODE_COL];
+    var visitedNodesInOrder = [];
     if (selectedAlgorithm === "dijkstra") {
-      var visitedNodesInOrder = dijkstra(node, startNode, finishNode);
+      visitedNodesInOrder = dijkstra(node, startNode, finishNode);
     }
     if (selectedAlgorithm === "BFS") {
-      var visitedNodesInOrder = bfs(node, startNode, finishNode);
+      visitedNodesInOrder = bfs(node, startNode, finishNode);
     }
     if (selectedAlgorithm === "DFS") {
-      var visitedNodesInOrder = dfs(node, startNode, finishNode);
+      visitedNodesInOrder = dfs(node, startNode, finishNode);
     }
     // if (selectedAlgorithm == "AStar") {
     //   var visitedNodesInOrder = aStar(node, startNode, finishNode);
@@ -187,22 +188,22 @@ export default function PathfindingVisualizer() {
   };
 
   const reset = () => {
-    createInitialGrid();
-    const newNode = node.slice();
-    for (var i = 0; i < newNode.length; i++) {
-      for (var j = 0; j < newNode[i].length; j++) {
-        document.getElementById(`node-${i}-${j}`).className = "node";
-        if (newNode[i][j].isStart) {
-          document.getElementById(`node-${i}-${j}`).className =
-            "node node-start";
-        }
-        if (newNode[i][j].isFinish) {
-          document.getElementById(`node-${i}-${j}`).className =
-            "node node-finish";
-        }
-      }
-      setNode(newNode);
-    }
+    // createInitialGrid();
+    // const newNode = node.slice();
+    // for (var i = 0; i < newNode.length; i++) {
+    //   for (var j = 0; j < newNode[i].length; j++) {
+    //     document.getElementById(`node-${i}-${j}`).className = "node";
+    //     if (newNode[i][j].isStart) {
+    //       document.getElementById(`node-${i}-${j}`).className =
+    //         "node node-start";
+    //     }
+    //     if (newNode[i][j].isFinish) {
+    //       document.getElementById(`node-${i}-${j}`).className =
+    //         "node node-finish";
+    //     }
+    //   }
+    //   setNode(newNode);
+    // }
   };
 
   return (
