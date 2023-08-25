@@ -1,19 +1,19 @@
-# Dijkstra's Algorithm Pathfinding Visualizer
+# Algorithm Visualizer
 
-This is a web-based visualizer for Dijkstra's algorithm, a popular shortest path algorithm, written in JavaScript and HTML/CSS. It allows users to visualize the process of finding the shortest path between two points on a grid, using Dijkstra's algorithm. Users can also create walls to obstruct the pathfinding algorithm, simply by clicking on grid cells.
+This is a web-based visualizer for Dijkstra's algorithm, a popular shortest path algorithm, written in JavaScript and HTML/CSS. It allows users to visualize the process of finding the shortest path between two points on a grid, using algorithms such as Dijkstra's, BFS or DFS. Users can also create walls to obstruct the pathfinding algorithm, simply by clicking on grid cells.
 
 This project is a great tool for anyone interested in learning about pathfinding algorithms or looking to improve their problem-solving skills.
 
 ## Demo
 Here's a screenshot of the homepage:
-![pathfinding_v3](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/6b4c2835-4690-4d46-b1d7-e9b1b025c0c2)
-![pathfinding_v2](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/37e8a703-faa7-4c4f-85ad-2e8938125165)
+![Screenshot 2023-08-26 033808](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/486a1d5b-08f0-45c6-9dc3-fe4890da1269)
+![Screenshot 2023-08-26 033504](https://github.com/Nyx1on/Pathfinding-Visualizer/assets/75667684/dd787d80-1964-4c85-9ea9-0d0820119bd1)
 
 ## Key features:
 
  • Interactive web-based interface\
  • Customizable grid size and start/end points\
- • Visualizes the process of Dijkstra's algorithm step-by-step\
+ • Visualizes the working of graph based algorithms like BFS,DFS, Dijkstra step-by-step\
  • Allows users to create walls to obstruct the pathfinding algorithm\
  • Animates the shortest path between start and end points\
 
