@@ -1,5 +1,5 @@
 import React from "react";
-import "./node.css";
+import "./nodestyles.css";
 
 export default function Node(props) {
   const {
