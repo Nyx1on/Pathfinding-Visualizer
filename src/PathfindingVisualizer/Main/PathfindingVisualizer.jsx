@@ -22,6 +22,7 @@ export default function PathfindingVisualizer() {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState("dijkstra");
   const [speed, setSpeed] = useState(2);
   const [time, setTime] = useState(10);
+  const [distanceFromStart, setDistanceFromStart] = useState(Infinity);
 
   const createInitialGrid = () => {
     const node = [];
@@ -142,8 +143,10 @@ export default function PathfindingVisualizer() {
             "node node-visited";
         }
       }, 10 * i);
-      console.log(time);
     }
+    setDistanceFromStart(
+      visitedNodesInOrder[visitedNodesInOrder.length - 1].distance
+    );
   };
 
   const animateShortestPath = (nodesInShortestPath) => {
@@ -227,6 +230,7 @@ export default function PathfindingVisualizer() {
             reset={reset}
             time={time}
             setTime={setTime}
+            distanceFromStart={distanceFromStart}
           ></SideBar>
         </div>
         <table className="grid">

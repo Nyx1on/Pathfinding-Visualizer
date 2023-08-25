@@ -131,6 +131,7 @@ button {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
+  width: 280px;
 }
 
 /* Style the option elements */

@@ -13,6 +13,7 @@ export default function SideBar(props) {
     reset,
     time,
     setTime,
+    distanceFromStart,
   } = props;
 
   const [speed, setSpeed] = useState(2);
@@ -65,7 +66,10 @@ export default function SideBar(props) {
                 Visualize {selectedAlgorithm} algorithm
               </button>
             </li>
-            <li className="item">
+            <li
+              className="item"
+              style={{ display: "flex", flexDirection: "row" }}
+            >
               <button
                 ref={btnRef}
                 className="create-walls"
@@ -73,8 +77,6 @@ export default function SideBar(props) {
               >
                 Create Walls
               </button>
-            </li>
-            <li className="item">
               <button className="gen-btn" onClick={clearWalls}>
                 Clear Walls
               </button>
@@ -83,6 +85,16 @@ export default function SideBar(props) {
               <button className="gen-btn" onClick={reset}>
                 Reset
               </button>
+            </li>
+            <li
+              className="item"
+              style={{
+                fontSize: "24px",
+                fontWeight: "500",
+                margin: "25px 0px",
+              }}
+            >
+              Distance: {distanceFromStart}
             </li>
             <li className="item" style={{ margin: "25px 0" }}>
               <div className="speed-control">
@@ -128,7 +140,7 @@ export default function SideBar(props) {
                 style={{ width: "25px", height: "25px" }}
               />
               <div className="text" style={{ marginLeft: "20px" }}>
-                : End Node
+                : {distanceFromStart}
               </div>
             </li>
           </ul>
