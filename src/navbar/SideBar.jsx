@@ -138,7 +138,7 @@ export default function SideBar(props) {
                 style={{ width: "25px", height: "25px" }}
               />
               <div className="text" style={{ marginLeft: "20px" }}>
-                : {distanceFromStart}
+                : End Node
               </div>
             </li>
           </ul>
