@@ -188,21 +188,17 @@ export default function PathfindingVisualizer() {
 
   const reset = () => {
     // createInitialGrid();
-    // const newNode = node.slice();
-    // for (var i = 0; i < newNode.length; i++) {
-    //   for (var j = 0; j < newNode[i].length; j++) {
-    //     document.getElementById(`node-${i}-${j}`).className = "node";
-    //     if (newNode[i][j].isStart) {
-    //       document.getElementById(`node-${i}-${j}`).className =
-    //         "node node-start";
-    //     }
-    //     if (newNode[i][j].isFinish) {
-    //       document.getElementById(`node-${i}-${j}`).className =
-    //         "node node-finish";
-    //     }
-    //   }
-    //   setNode(newNode);
-    // }
+    const newNode = node.slice();
+    for (var i = 0; i < newNode.length; i++) {
+      for (var j = 0; j < newNode[i].length; j++) {
+        if(newNode[i][j].isVisited && !newNode[i][j].isWall && !newNode[i][j].isStart
+          && !newNode[i][j].isFinish) {
+          newNode[i][j].isVisited = false; // Resetting visited flag to false
+          document.getElementById(`node-${i}-${j}`).className = "node"; //Resetting css class for visited nodes
+        }
+        setNode(newNode);
+      }
+    }
   };
 
   return (
